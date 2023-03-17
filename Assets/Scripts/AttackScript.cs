@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireballScript : MonoBehaviour
+public class AttackScript : MonoBehaviour
 {
     public float Damage;
 
-    void fixedUpdate()
+    private void Update()
     {
-        if(Input.getButton(mouseButton.1))
+        if (Input.GetButton("Fire"))
         {
 
         }
+    }
+    void fixedUpdate()
+    {
+
     }
 }
