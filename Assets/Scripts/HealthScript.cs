@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class HealthScript : MonoBehaviour
 {
-    public float maxHP;  
-    public float HP;
+    [SerializeField] public float maxHealth;  
+    [SerializeField] public float Health;
 
-
+    public void TakeDamage(float damage)
+    {
+        Health -= damage;
+    }
 }
