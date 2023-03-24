@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] CharacterController Controller;
     [SerializeField] TrailRenderer TR;
     [SerializeField] Rigidbody2D RB;
+    public Transform MuzzlePoint;
     float HorizontalMovement = 0f;
     public float MoveSpeed = 40f;
     bool Jump = false;
@@ -62,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        Muzzle();
         if (Dashing||Pausing)
         {
             return;
@@ -94,5 +96,13 @@ public class PlayerMovement : MonoBehaviour
         Dashing = false;
         yield return new WaitForSeconds(DashingCD);
         CanDash = true;
+    }
+
+    void Muzzle()
+    {       
+         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+         Vector3 direction = (mousePosition - transform.position).normalized;
+         float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+         MuzzlePoint.rotation = Quaternion.Euler(0, 0, rotation - 90f);
     }
 }
